@@ -8,22 +8,25 @@ import javax.persistence.Id;
 @Entity
 public class Quest {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long questId;
-
+    private Integer questId;
     private String questName;
 
-
+    protected Quest(){}
     public Quest(String questName){
         this.questName = questName;
     }
 
-    public Long getQuestId() {
-        return questId;
+    @Override
+    public String toString(){
+        return String.format("Quest[id=%d, Name = '%s']",
+                questId, questName);
     }
 
+    public Integer getQuestId() {
+        return questId;
+    }
     public String getQuestName() {
         return questName;
     }

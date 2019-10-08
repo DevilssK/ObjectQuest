@@ -4,8 +4,10 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface ObjectRepository extends CrudRepository<Object, Long> {
+public interface ObjectRepository extends CrudRepository<Object, Integer> {
 
-    List<Object> findByName(String objectName);
-    Object findById(long userId);
+    List<Object> findByObjectName(String objectName);
+    List<Object> findByQuestId(Integer questId);
+    Object findByObjectId(Integer objectId);
+
 }
