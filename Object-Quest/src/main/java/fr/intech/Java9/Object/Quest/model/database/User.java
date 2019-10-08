@@ -1,4 +1,4 @@
-package fr.intech.Java9.Object.Quest.model;
+package fr.intech.Java9.Object.Quest.model.database;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
