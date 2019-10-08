@@ -10,28 +10,38 @@ public class Object {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long objectId;
-    private String name;
+    private Integer objectId;
+    private String objectName;
     private  int point;
-    private Long questId;
+    private Integer questId;
+
+    protected Object(){}
+
+    public Object(String objectName, int point, Integer questId) {
+        this.objectName = objectName;
+        this.point = point;
+        this.questId = questId;
+    }
 
     @Override
     public String toString(){
         return String.format("Object[objectId = %d, Name = '%s', score = %d",
-                objectId, name, point);
+                objectId, objectName, point);
     }
 
-    public Long getObjectId() {
+    public Integer getObjectId() {
         return objectId;
     }
 
-    public String getName() {
-        return name;
+    public String getObjectName() {
+        return objectName;
     }
 
     public int getPoint() {
         return point;
     }
 
-    public Long getQuestId(){ return questId; }
+    public Integer getQuestId() {
+        return questId;
+    }
 }

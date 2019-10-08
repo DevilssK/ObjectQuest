@@ -10,12 +10,11 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long userId;
+    private Integer userId;
     private String userName;
-    private Long score;
+    private int score;
 
     protected User(){}
-
     public User(String userName){
         this.userName = userName;
     }
@@ -26,12 +25,10 @@ public class User {
                 userId, userName, score);
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
-
     public String getUserName() { return userName; }
-
-    public Long getScore(){ return score; }
+    public int getScore(){ return score; }
 
 }
