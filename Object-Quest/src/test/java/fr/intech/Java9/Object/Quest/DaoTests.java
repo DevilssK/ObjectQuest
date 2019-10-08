@@ -1,7 +1,7 @@
 package fr.intech.Java9.Object.Quest;
 
-import fr.intech.Java9.Object.Quest.model.*;
-import fr.intech.Java9.Object.Quest.model.Object;
+import fr.intech.Java9.Object.Quest.model.database.*;
+import fr.intech.Java9.Object.Quest.model.database.Object;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -20,4 +20,12 @@ public class Annotation {
     public void setScore(Integer score) {
         this.score = score;
     }
+
+    @Override
+    public String toString() {
+        return "\n\tAnnotation{\n\t" +
+                "description='" + description + '\'' +
+                ", score=" + score +
+                "\n}";
+    }
 }

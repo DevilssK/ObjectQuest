@@ -6,9 +6,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,20 +31,6 @@ public class VisionApiImp implements VisionApi {
 
             // Performs label detection on the image file
             BatchAnnotateImagesResponse response = vision.batchAnnotateImages(requests);
-
-            //List<AnnotateImageResponse> responses = response.getResponsesList();
-
-//            for (AnnotateImageResponse res : responses) {
-//                if (res.hasError()) {
-//                    System.out.printf("Error: %s\n", res.getError().getMessage());
-//                    return;
-//                }
-//
-//                for (EntityAnnotation annotation : res.getLabelAnnotationsList()) {
-//                    annotation.getAllFields().forEach((k, v) ->
-//                            System.out.printf("%s : %s\n", k, v.toString()));
-//                }
-//            }
 
             return response;
 
