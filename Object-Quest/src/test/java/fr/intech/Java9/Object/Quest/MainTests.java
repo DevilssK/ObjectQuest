@@ -26,19 +26,27 @@ public class MainTests {
 	public void contextLoads() {
 	}
 
+//	@Test
+//	public void sendRequest() throws Exception {
+//
+//		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
+//
+//		System.out.println(res);
+//	}
+//
+//	@Test
+//	public void response() throws  Exception {
+//		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
+//
+//		RequestResponse response = responseHandler.getResponse(res);
+//	System.out.println(response);
+//	}
+
 	@Test
-	public void sendRequest() throws Exception {
+	public void Display() throws Exception{
 
 		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
 
-		System.out.println(res);
-	}
-
-	@Test
-	public void response() throws  Exception {
-		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
-
-		RequestResponse response = responseHandler.getResponse(res);
-	System.out.println(response);
+		responseHandler.Display(res);
 	}
 }
