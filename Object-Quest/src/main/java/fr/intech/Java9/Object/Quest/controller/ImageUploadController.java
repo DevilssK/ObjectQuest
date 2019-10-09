@@ -13,9 +13,8 @@ public class ImageUpload {
     public String getUploadedImage(@RequestParam("file") MultipartFile file )  throws Exception {
 
 
-        AppRequestHandlerImp appRequestHandlerImp =new AppRequestHandlerImp();
-        appRequestHandlerImp.SendToApi(file.getInputStream());
-
+//        AppRequestHandlerImp appRequestHandlerImp =new AppRequestHandlerImp();
+//        appRequestHandlerImp.SendToApi(file.getInputStream());
     return  "Image sent";
     }
 }
