@@ -1,5 +1,7 @@
 package fr.intech.Java9.Object.Quest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
 import fr.intech.Java9.Object.Quest.model.RequestResponse;
 import fr.intech.Java9.Object.Quest.service.ResponseHandler;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -47,6 +50,10 @@ public class MainTests {
 
 		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
 
-		responseHandler.Display(res);
+//		try {
+//			new ObjectMapper().configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false).writeValue(System.out,res);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 }

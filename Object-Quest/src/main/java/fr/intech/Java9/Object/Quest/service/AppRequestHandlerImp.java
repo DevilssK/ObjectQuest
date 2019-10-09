@@ -17,10 +17,9 @@ public class AppRequestHandlerImp implements AppRequestHandler {
         this.visionApi = visionApi;
     }
 
-    public void SendToApi(InputStream stream)throws Exception{
+    public void sendToApi(InputStream stream)throws Exception{
 
         visionApi.sendRequest(stream);
     }
-
 
 }

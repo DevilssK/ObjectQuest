@@ -5,6 +5,11 @@ import fr.intech.Java9.Object.Quest.model.RequestResponse;
 
 public interface ResponseHandler {
 
-//    public RequestResponse getResponse(BatchAnnotateImagesResponse resp) throws Exception;
-      public void Display(BatchAnnotateImagesResponse resp) throws Exception;
+      /**
+       * get BatchAnnotateImageResponse from api and transform it into a RequestResponse
+       * @param resp
+       * @return RequestResponses
+       * @throws Exception
+       */
+      public RequestResponse getResponseFromApi(BatchAnnotateImagesResponse resp) throws Exception;
 }

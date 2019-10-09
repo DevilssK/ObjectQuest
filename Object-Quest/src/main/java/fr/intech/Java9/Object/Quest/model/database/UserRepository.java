@@ -11,4 +11,6 @@ public interface UserRepository extends CrudRepository<User, Integer> {
 
     User findByUserId(Integer userId);
 
+    void updateScore(Integer score);
+
 }
