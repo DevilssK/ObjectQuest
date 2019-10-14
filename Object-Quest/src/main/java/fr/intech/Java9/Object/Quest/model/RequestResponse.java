@@ -1,5 +1,6 @@
 package fr.intech.Java9.Object.Quest.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RequestResponse {
@@ -12,6 +13,15 @@ public class RequestResponse {
 
     public void setAnnotations(List<Annotation> annotations) {
         this.annotations = annotations;
+    }
+
+    public List<String> getDescriptions(){
+        List<String> descriptions = new ArrayList<>();
+
+        for (Annotation annotation: annotations ) {
+            descriptions.add(annotation.getDescription());
+        }
+        return descriptions;
     }
 
     @Override

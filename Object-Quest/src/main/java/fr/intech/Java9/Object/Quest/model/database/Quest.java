@@ -13,8 +13,8 @@ public class Quest {
     private Integer questId;
     private String questName;
 
-    protected Quest(){}
-    public Quest(String questName){
+    public  Quest(){}
+    public Quest(String questName) {
         this.questName = questName;
     }
 
@@ -24,10 +24,17 @@ public class Quest {
                 questId, questName);
     }
 
-    public Integer getQuestId() {
+    public int getQuestId() {
         return questId;
     }
+    public void setQuestId(int questId) {
+        this.questId = questId;
+    }
+
     public String getQuestName() {
         return questName;
+    }
+    public void setQuestName(String questName) {
+        this.questName = questName;
     }
 }
