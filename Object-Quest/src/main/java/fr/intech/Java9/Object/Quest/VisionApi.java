@@ -15,4 +15,6 @@ public interface VisionApi {
         FileInputStream stream = new FileInputStream(new File(fileName));
         return sendRequest(stream);
     }
+
+
 }

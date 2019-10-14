@@ -1,6 +1,5 @@
 package fr.intech.Java9.Object.Quest.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.cloud.vision.v1.AnnotateImageResponse;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
 import com.google.cloud.vision.v1.EntityAnnotation;
@@ -8,7 +7,6 @@ import fr.intech.Java9.Object.Quest.model.Annotation;
 import fr.intech.Java9.Object.Quest.model.RequestResponse;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +15,6 @@ public class ResponseHandlerImp  implements ResponseHandler {
 
 
     public RequestResponse getResponseFromApi(BatchAnnotateImagesResponse apiResponse){
-
-
-
 
         RequestResponse requestResponse = new RequestResponse();
 

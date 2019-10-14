@@ -1,20 +1,26 @@
 package fr.intech.Java9.Object.Quest;
 
+import fr.intech.Java9.Object.Quest.model.RequestResponse;
 import fr.intech.Java9.Object.Quest.model.database.*;
 import fr.intech.Java9.Object.Quest.model.database.Object;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import javax.transaction.Transactional;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@TestPropertySource(locations="classpath:application-test.properties")
 public class DaoTests {
 
     @Autowired
@@ -38,7 +44,7 @@ public class DaoTests {
     }
 
     @Test
-    public void QuestDao(){
+    public void questDao(){
 
         Quest quest = new Quest("aggrapheuse");
         questRepository.save(quest);
@@ -51,22 +57,40 @@ public class DaoTests {
     }
 
     @Test
-    public void ObjectDao(){
+    @Transactional
+    public void objectDao(){
 
-        Object object = new Object("object", 10, 1);
-        Object object1 = new Object("object1", 20, 1);
-        Object object2 = new Object("object2", 10, 1);
-        Object object3 = new Object("object3", 30, 1);
-        Object object4 = new Object("object4", 40, 1);
-        Object object5 = new Object("object5", 50, 0);
+        List<String> computerMouse = Arrays.asList(new String[]{"Electronic device", "Technology", "Computer hardware", "Mouse", "Input device", "Computer component", "Peripheral", "Wire"});
+        List<String> labels = Arrays.asList("Watch accessory", "Watch", "Analog watch", "Fashion accessory", "Jewellery", "Material property", "Strap", "Metal");
 
-        List<Object> objects = Arrays.asList(new Object[]{object, object1,object2, object3, object4, object5});
+//        Object object = new Object("object", 10, 1, computerMouse);
+//        Object object1 = new Object("object1", 20, 1, computerMouse);
+//        Object object2 = new Object("object2", 10, 1, computerMouse);
+//        Object object3 = new Object("object3", 30, 1, computerMouse);
+//        Object object4 = new Object("object4", 40, 1, computerMouse);
+//        Object object5 = new Object("object5", 50, 0, computerMouse);
 
-        objectRepository.saveAll(objects);
+//        List<Object> objects = Arrays.asList(object, object1,object2, object3, object4, object5);
+//
+//        objectRepository.save(object1);
+//         Object sut =  objectRepository.findByObjectName("object1").get(0);
+//
+//        List<String> sutLabels = sut.getLabels();
+//
+//        System.out.println(sutLabels.size());
+//
 
-        List<Object> sutList = objectRepository.findByQuestId(1);
+         //assertEquals(sutLabels.size(), labels.size());
 
-        assertEquals(5,sutList.size());
-        assertEquals("object", sutList.get(0).getObjectName());
+        //objectRepository.saveAll(objects);
+
+        //List<Object> sutList = objectRepository.findByQuestId(1);
+//
+//        assertEquals(5,sutList.size());
+//        assertEquals("object", sutList.get(0).getObjectName());
+//        Object sut = sutList.get(0);
+
+       // System.out.println(sut.getLabels());
+
     }
 }

@@ -1,11 +1,9 @@
 package fr.intech.Java9.Object.Quest.model.database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
-@Entity
+@Entity(name = "users")
 public class User {
 
     @Id
@@ -14,12 +12,17 @@ public class User {
     private String userName;
     private int score;
 
-    public User(){}
-    public User(String userName){
+    @ElementCollection
+    private List<Quest> success;
+
+    @ElementCollection
+    private List<Object> foundObject;
+
+    public User() {}
+
+    public User(String userName) {
         this.userName = userName;
     }
-
-
 
     @Override
     public String toString(){
@@ -30,18 +33,40 @@ public class User {
     public Integer getUserId() {
         return userId;
     }
-    public String getUserName() { return userName; }
-    public int getScore(){ return score; }
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
+    public int getScore() {
+        return score;
+    }
+
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public List<Quest> getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(List<Quest> success) {
+        this.success = success;
+    }
+
+    public List<Object> getFoundObject() {
+        return foundObject;
+    }
+
+    public void setFoundObject(List<Object> foundObject) {
+        this.foundObject = foundObject;
     }
 }

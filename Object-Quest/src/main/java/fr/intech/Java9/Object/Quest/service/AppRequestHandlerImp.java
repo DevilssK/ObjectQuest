@@ -10,16 +10,18 @@ import java.io.InputStream;
 public class AppRequestHandlerImp implements AppRequestHandler {
 
     private VisionApi visionApi;
+    private ResponseHandlerImp responseHandler;
 
     public AppRequestHandlerImp(){}
 
-    public AppRequestHandlerImp(VisionApiImp visionApi){
+    public AppRequestHandlerImp(VisionApiImp visionApi, ResponseHandlerImp responseHandler){
         this.visionApi = visionApi;
+        this.responseHandler = responseHandler;
     }
 
     public void sendToApi(InputStream stream)throws Exception{
 
-        visionApi.sendRequest(stream);
+        responseHandler.getResponseFromApi(visionApi.sendRequest(stream));
     }
 
 }

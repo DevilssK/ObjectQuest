@@ -1,9 +1,9 @@
 package fr.intech.Java9.Object.Quest.model.database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Object {
@@ -13,35 +13,65 @@ public class Object {
     private Integer objectId;
     private String objectName;
     private  int point;
-    private Integer questId;
 
-    protected Object(){}
+    @OneToOne
+    private Quest quest;
 
-    public Object(String objectName, int point, Integer questId) {
+    @ElementCollection
+    private List<String> labels;
+
+    public Object(){}
+
+    public Object(String objectName, int point, Quest quest, List<String> labels) {
         this.objectName = objectName;
         this.point = point;
-        this.questId = questId;
+        this.quest = quest;
+        this.labels = labels;
     }
 
     @Override
     public String toString(){
-        return String.format("Object[objectId = %d, Name = '%s', score = %d",
-                objectId, objectName, point);
+        return String.format("Object[objectId = %d, Name = '%s', score = %d, labels = (%s)",
+                objectId, objectName, point, labels);
     }
 
     public Integer getObjectId() {
         return objectId;
     }
 
+    public void setObjectId(Integer objectId) {
+        this.objectId = objectId;
+    }
+
     public String getObjectName() {
         return objectName;
+    }
+
+    public void setObjectName(String objectName) {
+        this.objectName = objectName;
     }
 
     public int getPoint() {
         return point;
     }
 
-    public Integer getQuestId() {
-        return questId;
+    public void setPoint(int point) {
+        this.point = point;
+    }
+
+    public Quest getQuest() {
+        return quest;
+    }
+
+    public void setQuest(Quest quest) {
+        this.quest = quest;
+    }
+
+    public List<String> getLabels() {
+        return labels;
+    }
+
+    public void setLabels(List<String> labels) {
+        this.labels = labels;
     }
 }

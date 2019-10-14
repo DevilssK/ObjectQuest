@@ -31,7 +31,6 @@ public class VisionApiImp implements VisionApi {
 
             // Performs label detection on the image file
             BatchAnnotateImagesResponse response = vision.batchAnnotateImages(requests);
-
             return response;
 
         }

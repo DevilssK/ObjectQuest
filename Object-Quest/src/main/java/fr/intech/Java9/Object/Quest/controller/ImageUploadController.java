@@ -19,7 +19,6 @@ public class ImageUploadController {
     public String getUploadedImage(@RequestParam("file") MultipartFile file )  throws Exception {
 
         appRequestHandler.sendToApi(file.getInputStream());
-
     return  "Image sent";
     }
 }
