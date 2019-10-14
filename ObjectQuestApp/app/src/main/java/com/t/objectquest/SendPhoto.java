@@ -38,13 +38,13 @@ public class SendPhoto {
                 .enqueue(new Callback() {
                     @Override
                     public void onFailure(final Call call, IOException e) {
-                        //
+                        Log.e(TAG,"Erreur d'envoi",e);
                     }
 
                     @Override
                     public void onResponse(Call call, final Response response) throws IOException {
                         String res = response.body().string();
-
+                        Log.i(TAG, "response"+ res);
 
                     }
                 });
