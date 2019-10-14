@@ -28,7 +28,7 @@ public class SendPhoto {
                 RequestBody.create(MediaType.parse("image/*jpg"), file)).build();
 
         Request request = new Request.Builder()
-                .url("http://192.168.43.251:8080/image/uploadfile")
+                .url("http://192.168.43.40:8080/image/uploadfile")
                 .post(req)
                 .build();
 
