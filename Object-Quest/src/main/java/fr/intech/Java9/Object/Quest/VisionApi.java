@@ -1,6 +1,5 @@
 package fr.intech.Java9.Object.Quest;
 
-import com.google.cloud.ByteArray;
 import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
 
 import java.io.File;
