@@ -24,24 +24,24 @@ public class Initiliazer {
     @PostConstruct
     public  void init(){
 
-//        List<String> computerMouse = Arrays.asList("Electronic device", "Technology", "Mouse");
-//        List<String> watch = Arrays.asList( "Watch accessory", "Watch");
-//        List<String> cup = Arrays.asList("Cup", "Drinkware");
-//        List<String> headset = Arrays.asList("Headphones", "Audio equipment", "Technology", "Electronic device", "Headset", "Ear");
-//
-//        Quest quest = new Quest("quest");
-//        Quest techQuest = new Quest("Tech Piece");
-//
-//        questRepository.save(techQuest);
-//
-//
-//        Object computerMouseObj  = new Object("Computer Mouse",  10, techQuest, computerMouse);
-//        Object headsetObj = new Object("Headset", 10, techQuest, headset);
-//        Object watchObj = new Object( "Watch", 10, techQuest, watch);
-//        Object cupObj =  new Object( "DrinkWare", 10, techQuest, cup);
-//
-//        List<Object> objects = Arrays.asList(computerMouseObj, headsetObj, watchObj, cupObj);
-//
-//        objectRepository.saveAll(objects);
+        List<String> computerMouse = Arrays.asList("Electronic device", "Technology", "Mouse");
+        List<String> watch = Arrays.asList( "Watch accessory", "Watch");
+        List<String> cup = Arrays.asList("Cup", "Drinkware");
+        List<String> headset = Arrays.asList("Headphones", "Audio equipment", "Technology", "Electronic device", "Headset", "Ear");
+
+        Quest quest = new Quest("quest");
+        Quest techQuest = new Quest("Tech Piece");
+
+        questRepository.save(techQuest);
+
+
+        Object computerMouseObj  = new Object("Computer Mouse",  10, techQuest, computerMouse);
+        Object headsetObj = new Object("Headset", 10, techQuest, headset);
+        Object watchObj = new Object( "Watch", 10, techQuest, watch);
+        Object cupObj =  new Object( "DrinkWare", 10, techQuest, cup);
+
+        List<Object> objects = Arrays.asList(computerMouseObj, headsetObj, watchObj, cupObj);
+
+        objectRepository.saveAll(objects);
     }
 }

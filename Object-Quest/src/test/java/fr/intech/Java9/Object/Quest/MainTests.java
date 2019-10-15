@@ -17,7 +17,6 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
-
 public class MainTests {
 
 	@Autowired
@@ -42,16 +41,16 @@ public class MainTests {
 
 	@Test
 	public void response() throws  Exception {
-		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
-
-		RequestResponse response = responseHandler.getResponseFromApi(res);
-	System.out.println(response);
+//		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
+//
+//		RequestResponse response = responseHandler.getResponseFromApi(res);
+//	System.out.println(response);
 	}
 
 	@Test
 	public void display() throws Exception{
 
-		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
+		//BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
 
 		//System.out.println(res);
 //		try {
@@ -63,13 +62,13 @@ public class MainTests {
 
 	@Test
 	public void des() throws Exception{
-		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
-
-		RequestResponse response = responseHandler.getResponseFromApi(res);
-
-		objectRecognition.ObjectIs(response);
-
-		System.out.println(response.getDescriptions().toString());
+//		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
+//
+//		RequestResponse response = responseHandler.getResponseFromApi(res);
+//
+//		objectRecognition.ObjectIs(response);
+//
+//		System.out.println(response.getDescriptions().toString());
 
 		//assertEquals(objectRecognition.ObjectExistAndNotFound(response), true);
 
