@@ -24,11 +24,8 @@ public class Quest {
                 questId, questName);
     }
 
-    public int getQuestId() {
+    public Integer getQuestId() {
         return questId;
-    }
-    public void setQuestId(int questId) {
-        this.questId = questId;
     }
 
     public String getQuestName() {

@@ -16,7 +16,7 @@ public class User {
     private List<Quest> success;
 
     @ElementCollection
-    private List<Object> foundObject;
+    private List<Object> foundObjects;
 
     public User() {}
 
@@ -62,11 +62,15 @@ public class User {
         this.success = success;
     }
 
-    public List<Object> getFoundObject() {
-        return foundObject;
+    public List<Object> getFoundObjects() {
+        return foundObjects;
     }
 
-    public void setFoundObject(List<Object> foundObject) {
-        this.foundObject = foundObject;
+    public void setFoundObjects(List<Object> foundObjects) {
+        this.foundObjects = foundObjects;
+    }
+
+    public void addFoundObject(Object foundObject){
+        foundObjects.add(foundObject);
     }
 }

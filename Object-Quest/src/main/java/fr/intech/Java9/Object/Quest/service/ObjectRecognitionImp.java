@@ -2,6 +2,7 @@ package fr.intech.Java9.Object.Quest.service;
 import fr.intech.Java9.Object.Quest.model.RequestResponse;
 import fr.intech.Java9.Object.Quest.model.database.Object;
 import fr.intech.Java9.Object.Quest.model.database.ObjectRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,87 +13,42 @@ import java.util.List;
 @Service
 public class ObjectRecognitionImp  implements ObjectRecognition{
 
-    private RequestResponse requestResponse;
+    @Autowired
     private ObjectRepository objectRepository;
 
-    List<String> computerMouse = Arrays.asList(new String[]{"Electronic device", "Technology", "Computer hardware", "Mouse", "Input device", "Computer component", "Peripheral", "Wire"});
-    List<String> watch = Arrays.asList(new String[]{"Watch accessory", "Watch", "Analog watch", "Fashion accessory", "Jewellery", "Material property", "Strap", "Metal"});
-    List<String> headset = Arrays.asList(new String[] {"Headphones", "Audio equipment", "Technology", "Electronic device", "Headset", "Gadget", "Ear", "Circle"});
-    List<String> glass = Arrays.asList(new String[]{"Cup", "Drinkware"});
 
-    public ObjectRecognitionImp() {
-    }
+    public Object reconizeObject(RequestResponse requestResponse){
 
-    public ObjectRecognitionImp(RequestResponse requestResponse,ObjectRepository objectRepository) {
-        this.requestResponse = requestResponse;
-        this.objectRepository = objectRepository;
-    }
+        List<Object> objects = (List)objectRepository.findAll();
 
-    public String ObjectIs(RequestResponse requestResponse){
-//        if(isWatch(requestResponse)){
-//            return "watch";
-//        }
-//        if(isMouse(requestResponse)){
-//            return "computerMouse";
-//        }
-//        if(isCup(requestResponse)){ return "cup";}
-//        if(isHeadset(requestResponse)){return "headset";}
-//
-//        else{ return "not Found";}
-        return "true";
-    }
+        Object obj = new Object();
 
-    public String reconizeObject(RequestResponse requestResponse){
-        Iterable<Object> objects = objectRepository.findAll();
+        for(Object object : objects){
 
-        return objects.toString();
-    }
-
-
-
-
-    public  boolean isMouse( RequestResponse requestResponse ){
-
-        int same = 0;
-        List<String> descriptions =  requestResponse.getDescriptions();
-
-        for (String description: descriptions
-        ) {
-            if (computerMouse.contains(description)){
-                same++;
+            if(areSimilare(requestResponse.getDescriptions(), object.getLabels())){
+                return object;
+            }
+            else{
+                return obj;
             }
         }
-        int percentage = (same*100)/computerMouse.size();
 
-        if(percentage > 70){
-            return true;
-        }
-        else{return false;}
+        return obj;
     }
 
-    public  boolean isWatch( RequestResponse requestResponse ){
-
+    public static boolean areSimilare(List<String> responseAnnotations, List<String> objAnnotations ){
         int same = 0;
-        List<String> descriptions =  requestResponse.getDescriptions();
-
-        for (String description: descriptions
-        ) {
-            if (watch.contains(description)){
+        for (String annotation: objAnnotations) {
+            if(responseAnnotations.contains(annotation)){
                 same++;
             }
+            else same = same;
         }
-        int percentage = (same*100)/watch.size();
+        same = (same*100)/objAnnotations.size();
 
-        if(percentage > 70){
+        if(same>= 70){
             return true;
         }
-        else{return false;}
+        else {return false;}
     }
-
-    public boolean isCup(RequestResponse requestResponse){
-
-        return false;
-    }
-
-
 }

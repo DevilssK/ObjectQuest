@@ -1,7 +1,9 @@
 package fr.intech.Java9.Object.Quest.service;
 
+import com.google.cloud.vision.v1.BatchAnnotateImagesResponse;
 import fr.intech.Java9.Object.Quest.VisionApi;
 import fr.intech.Java9.Object.Quest.VisionApiImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
@@ -9,19 +11,17 @@ import java.io.InputStream;
 @Service
 public class AppRequestHandlerImp implements AppRequestHandler {
 
+    @Autowired
     private VisionApi visionApi;
-    private ResponseHandlerImp responseHandler;
+    @Autowired
+    private ResponseHandler responseHandler;
 
-    public AppRequestHandlerImp(){}
 
-    public AppRequestHandlerImp(VisionApiImp visionApi, ResponseHandlerImp responseHandler){
-        this.visionApi = visionApi;
-        this.responseHandler = responseHandler;
-    }
+    public BatchAnnotateImagesResponse sendToApi(InputStream stream)throws Exception{
 
-    public void sendToApi(InputStream stream)throws Exception{
-
-        responseHandler.getResponseFromApi(visionApi.sendRequest(stream));
+        BatchAnnotateImagesResponse apiResponse = visionApi.sendRequest(stream);
+        responseHandler.getResponseFromApi(apiResponse);
+        return apiResponse;
     }
 
 }
