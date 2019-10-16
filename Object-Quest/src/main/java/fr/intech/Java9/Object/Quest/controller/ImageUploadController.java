@@ -32,16 +32,15 @@ public class ImageUploadController {
 
         Object foundObject = objectRecognition.reconizeObject(response);
         if(foundObject.getObjectName() == null){
-            return "l'object ne correspond pas";
+            System.out.println("not Found");
+            return "L'object ne correspond pas";
         }
 
         userRepository.save(new User("Axel"));
         User user = userRepository.findByUserName("Axel").get(0);
 
-
-
         scoreManager.updateScoreAndFoundObjects(user, foundObject);
-
+        System.out.println("found");
     return  "Object trouvé : "+foundObject.getObjectName();
     }
 }

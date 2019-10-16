@@ -9,7 +9,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
 
@@ -19,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
     CapturePhotoUtils photoUtils = new CapturePhotoUtils();
     SendPhoto sendPhoto = new SendPhoto();
 
+    EditText username;
+    EditText password;
+    Button create = findViewById(R.id.createButton);
+    TextView error = findViewById(R.id.error_message);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +35,20 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button_image);
         button.setOnClickListener((c) -> {onClick();} );
 
-    }
+        create.setOnClickListener((v)->{
+            username = findViewById(R.id.usernmaneField);
+            String i =username.getText().toString();
+            if(i.isEmpty() || i!=null ||i.matches("/s")){
 
+                //TODO: write value in db and send request for creation
+
+            }
+            else{
+                Toast.makeText(getApplicationContext(), getString(R.string.retry), Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -37,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
     public void onClick() {
         new Thread(new Runnable() {
             public void run() {
@@ -45,11 +64,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
 
-
-
         }).start();
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
