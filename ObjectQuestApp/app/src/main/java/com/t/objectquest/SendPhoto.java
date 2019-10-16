@@ -2,14 +2,14 @@ package com.t.objectquest;
 
 import android.util.Log;
 
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.UnknownHostException;
+
+
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -24,11 +24,16 @@ public class SendPhoto {
     public static void uploadImage(byte[] file) {
 
 
-        RequestBody req = new MultipartBody.Builder().setType(MultipartBody.FORM).addFormDataPart("image", "filename.jpg",
-                RequestBody.create(MediaType.parse("image/*jpg"), file)).build();
+        FormBody.Builder form = new FormBody.Builder().add("userId" , "1").add("image" , file.toString());
+
+
+        RequestBody req = new MultipartBody.Builder().setType(MultipartBody.FORM)
+                .addFormDataPart("file", "filename.jpg",RequestBody.create(file,MediaType.parse("image/*jpg")))
+                .addFormDataPart("userId" , "1")
+                .build();
 
         Request request = new Request.Builder()
-                .url("http://192.168.43.40:8080/image/uploadfile")
+                .url("http://192.168.43.41:8080/image/uploadFile")
                 .post(req)
                 .build();
 

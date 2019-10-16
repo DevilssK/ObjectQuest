@@ -26,9 +26,8 @@ public class ImageUploadController {
     ObjectRecognition objectRecognition;
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public String getUploadedImage(@RequestParam("file") MultipartFile file, @RequestParam  int userId)  throws Exception {
+    public String getUploadedImage(@RequestParam("file") MultipartFile file, @RequestParam int userId)  throws Exception {
 
-        RequestResponse response = responseHandler.getResponseFromApi(appRequestHandler.sendToApi(file.getInputStream()));
 
         Object foundObject = objectRecognition.reconizeObject(response);
         if(foundObject.getObjectName() == null){
@@ -36,8 +35,15 @@ public class ImageUploadController {
             return "L'object ne correspond pas";
         }
 
-        userRepository.save(new User("Axel"));
-        User user = userRepository.findByUserName("Axel").get(0);
+//        userRepository.save(new User("Axel"));
+//        User user = userRepository.findByUserName("Axel").get(0);
+//
+//
+//
+//        scoreManager.updateScoreAndFoundObjects(user, foundObject);
+        System.out.println("founded");
+//+foundObject.getObjectName();
+    return  "Object trouvé : ";
 
         scoreManager.updateScoreAndFoundObjects(user, foundObject);
         System.out.println("found");
