@@ -26,22 +26,28 @@ public class ImageUploadController {
     ObjectRecognition objectRecognition;
 
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public String getUploadedImage(@RequestParam("file") MultipartFile file, @RequestParam  int userId)  throws Exception {
-
-        RequestResponse response = responseHandler.getResponseFromApi(appRequestHandler.sendToApi(file.getInputStream()));
-
-        Object foundObject = objectRecognition.reconizeObject(response);
-        if(foundObject.getObjectName() == null){
-            return "l'object ne correspond pas";
-        }
-
-        userRepository.save(new User("Axel"));
-        User user = userRepository.findByUserName("Axel").get(0);
+    public String getUploadedImage(@RequestParam("file") MultipartFile file, @RequestParam int userId)  throws Exception {
 
 
+        System.out.println("Toto");
+//        RequestResponse response = responseHandler.getResponseFromApi(appRequestHandler.sendToApi(file.getInputStream()));
+//
+//        Object foundObject = objectRecognition.reconizeObject(response);
+//        if(foundObject.getObjectName() == null){
+//            System.out.println("notfound");
+//
+//            return "l'object ne correspond pas";
+//        }
 
-        scoreManager.updateScoreAndFoundObjects(user, foundObject);
+//        userRepository.save(new User("Axel"));
+//        User user = userRepository.findByUserName("Axel").get(0);
+//
+//
+//
+//        scoreManager.updateScoreAndFoundObjects(user, foundObject);
+        System.out.println("founded");
+//+foundObject.getObjectName();
+    return  "Object trouvé : ";
 
-    return  "Object trouvé : "+foundObject.getObjectName();
     }
 }
