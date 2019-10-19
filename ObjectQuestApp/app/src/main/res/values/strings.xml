@@ -4,4 +4,6 @@
     <string name="password">Password</string>
     <string name="create_account">Créer un compte</string>
     <string name="retry">Réesayé</string>
+    <string name="description">Description</string>
+    <string name="quest">Quête</string>
 </resources>
