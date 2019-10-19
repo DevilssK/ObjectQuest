@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @TestPropertySource(locations="classpath:application-test.properties")
-public class ObjectRecognitionTests {
+public class ItemRecognitionTests {
 
     @Autowired
     VisionApi visionApi;

@@ -1,9 +1,7 @@
 package fr.intech.Java9.Object.Quest.model.database;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Quest {
@@ -12,6 +10,9 @@ public class Quest {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer questId;
     private String questName;
+
+    @ElementCollection
+    private List<Item> items;
 
     public  Quest(){}
     public Quest(String questName) {
@@ -33,5 +34,13 @@ public class Quest {
     }
     public void setQuestName(String questName) {
         this.questName = questName;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

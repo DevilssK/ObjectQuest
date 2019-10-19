@@ -2,7 +2,7 @@ package fr.intech.Java9.Object.Quest.model.database;
 
 import javax.persistence.Entity;
 
-@Entity
+
 public class UserPassword {
 
 

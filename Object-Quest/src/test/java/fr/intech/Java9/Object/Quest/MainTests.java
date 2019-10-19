@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
+
 import static org.junit.Assert.assertEquals;
 
 
@@ -61,16 +63,19 @@ public class MainTests {
 	}
 
 	@Test
+	@Transactional
 	public void des() throws Exception{
-//		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/mouse.jpg"));
-//
-//		RequestResponse response = responseHandler.getResponseFromApi(res);
-//
-//		objectRecognition.ObjectIs(response);
-//
-//		System.out.println(response.getDescriptions().toString());
+		BatchAnnotateImagesResponse res  = visionApi.sendRequest(getClass().getResourceAsStream("/wire.jpg"));
 
-		//assertEquals(objectRecognition.ObjectExistAndNotFound(response), true);
+		RequestResponse response = responseHandler.getResponseFromApi(res);
+
+		//objectRecognition.reconizeObject(response);
+
+		System.out.println(response.getDescriptions().toString());
+
+		//System.out.println(	objectRecognition.reconizeObject(response));
+		//assertEquals(objectRecognition.reconizeObject(response), true);
 
 	}
+
 }

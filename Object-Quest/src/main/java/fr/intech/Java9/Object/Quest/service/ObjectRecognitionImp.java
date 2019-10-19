@@ -1,32 +1,29 @@
 package fr.intech.Java9.Object.Quest.service;
 import fr.intech.Java9.Object.Quest.model.RequestResponse;
-import fr.intech.Java9.Object.Quest.model.database.Object;
-import fr.intech.Java9.Object.Quest.model.database.ObjectRepository;
+import fr.intech.Java9.Object.Quest.model.database.Item;
+import fr.intech.Java9.Object.Quest.model.database.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 @Service
 public class ObjectRecognitionImp  implements ObjectRecognition{
 
     @Autowired
-    private ObjectRepository objectRepository;
+    private ItemRepository itemRepository;
 
 
-    public Object reconizeObject(RequestResponse requestResponse){
+    public Item reconizeObject(RequestResponse requestResponse){
 
-        List<Object> objects = (List)objectRepository.findAll();
+        List<Item> items = (List) itemRepository.findAll();
 
-        Object obj = new Object();
+        Item obj = new Item();
 
-        for(Object object : objects){
+        for(Item item : items){
 
-            if(areSimilare(requestResponse.getDescriptions(), object.getLabels())){
-                return object;
+            if(areSimilare(requestResponse.getDescriptions(), item.getLabels())){
+                return item;
             }
             else{
                 return obj;
@@ -36,7 +33,7 @@ public class ObjectRecognitionImp  implements ObjectRecognition{
         return obj;
     }
 
-    public static boolean areSimilare(List<String> responseAnnotations, List<String> objAnnotations ){
+    public  boolean areSimilare(List<String> responseAnnotations, List<String> objAnnotations ){
         int same = 0;
         for (String annotation: objAnnotations) {
             if(responseAnnotations.contains(annotation)){

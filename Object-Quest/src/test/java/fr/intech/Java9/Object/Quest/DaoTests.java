@@ -1,8 +1,6 @@
 package fr.intech.Java9.Object.Quest;
 
-import fr.intech.Java9.Object.Quest.model.RequestResponse;
 import fr.intech.Java9.Object.Quest.model.database.*;
-import fr.intech.Java9.Object.Quest.model.database.Object;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +12,6 @@ import javax.transaction.Transactional;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -29,7 +25,7 @@ public class DaoTests {
     @Autowired
     private QuestRepository questRepository;
     @Autowired
-    private ObjectRepository objectRepository;
+    private ItemRepository itemRepository;
 
     @Test
     public void userDoa (){

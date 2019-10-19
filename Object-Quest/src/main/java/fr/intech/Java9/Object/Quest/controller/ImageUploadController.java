@@ -1,8 +1,5 @@
 package fr.intech.Java9.Object.Quest.controller;
 
-import fr.intech.Java9.Object.Quest.model.RequestResponse;
-import fr.intech.Java9.Object.Quest.model.database.Object;
-import fr.intech.Java9.Object.Quest.model.database.User;
 import fr.intech.Java9.Object.Quest.model.database.UserRepository;
 import fr.intech.Java9.Object.Quest.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +26,11 @@ public class ImageUploadController {
     public String getUploadedImage(@RequestParam("file") MultipartFile file, @RequestParam int userId)  throws Exception {
 
 
-        Object foundObject = objectRecognition.reconizeObject(response);
-        if(foundObject.getObjectName() == null){
-            System.out.println("not Found");
-            return "L'object ne correspond pas";
-        }
+//        Object foundObject = objectRecognition.reconizeObject(response);
+//        if(foundObject.getObjectName() == null){
+//            System.out.println("not Found");
+//            return "L'object ne correspond pas";
+        //}
 
 //        userRepository.save(new User("Axel"));
 //        User user = userRepository.findByUserName("Axel").get(0);
@@ -41,12 +38,13 @@ public class ImageUploadController {
 //
 //
 //        scoreManager.updateScoreAndFoundObjects(user, foundObject);
-        System.out.println("founded");
-//+foundObject.getObjectName();
-    return  "Object trouvé : ";
-
-        scoreManager.updateScoreAndFoundObjects(user, foundObject);
-        System.out.println("found");
-    return  "Object trouvé : "+foundObject.getObjectName();
-    }
+//        System.out.println("founded");
+////+foundObject.getObjectName();
+//    return  "Object trouvé : ";
+//
+//        scoreManager.updateScoreAndFoundObjects(user, foundObject);
+//        System.out.println("found");
+        //+foundObject.getObjectName();
+   return  "Object trouvé : ";}
+    //}
 }
