@@ -145,21 +145,19 @@ public class AppRequest {
 
     private static final String TAG1 = "SendPhoto";
 
-    public static void uploadImage(byte[] file) {
-
-
-        FormBody.Builder form = new FormBody.Builder().add("userId" , "1").add("image" , file.toString());
+    public static void uploadImage(byte[] file ,int userId) {
 
 
         RequestBody req = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("file", "filename.jpg",RequestBody.create(file, MediaType.parse("image/*jpg")))
-                .addFormDataPart("userId" , "1")
+                .addFormDataPart("userId" , String.valueOf(userId))
                 .build();
 
         Request request = new Request.Builder()
                 .url(Url+"/image/uploadFile")
                 .post(req)
                 .build();
+
 
         OkHttpClient client = new OkHttpClient();
 

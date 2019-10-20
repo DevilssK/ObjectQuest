@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
             byte[] byteArray = stream.toByteArray();
 
 
-            appRequestImp.uploadImage(byteArray , this.user.getUserId());
+            appRequest.uploadImage(byteArray , this.user.getUserId());
      }
 
 
