@@ -1,9 +1,11 @@
 package com.t.objectquest.model;
 
+import androidx.room.Entity;
+
 import java.util.List;
 
+@Entity
 public class Item {
-
 
     private Integer itemId;
     private String itemName;

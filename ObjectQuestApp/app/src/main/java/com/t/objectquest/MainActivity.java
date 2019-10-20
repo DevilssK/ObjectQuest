@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText username;
     EditText password;
-    Button create = findViewById(R.id.createButton);
-    TextView error = findViewById(R.id.error_message);
+   /* Button create = findViewById(R.id.createButton);
+    TextView error = findViewById(R.id.error_message);*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button_image);
         button.setOnClickListener((c) -> {onClick();} );
 
-        create.setOnClickListener((v)->{
+       /* create.setOnClickListener((v)->{
             username = findViewById(R.id.usernmaneField);
             String i =username.getText().toString();
             if(i.isEmpty() || i!=null ||i.matches("/s")){
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             else{
                 Toast.makeText(getApplicationContext(), getString(R.string.retry), Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
 
     }
 
