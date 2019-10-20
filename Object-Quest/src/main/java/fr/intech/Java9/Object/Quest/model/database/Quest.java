@@ -15,14 +15,22 @@ public class Quest {
     private List<Item> items;
 
     public  Quest(){}
-    public Quest(String questName) {
+
+    public Quest(String questName, List<Item> items) {
         this.questName = questName;
+        this.items = items;
     }
 
     @Override
     public String toString(){
         return String.format("Quest[id=%d, Name = '%s']",
                 questId, questName);
+    }
+
+    @Transient
+    @ElementCollection(fetch = FetchType.EAGER)
+    public List<Item> getItems(){
+        return items;
     }
 
     public Integer getQuestId() {
@@ -34,10 +42,6 @@ public class Quest {
     }
     public void setQuestName(String questName) {
         this.questName = questName;
-    }
-
-    public List<Item> getItems() {
-        return items;
     }
 
     public void setItems(List<Item> items) {
