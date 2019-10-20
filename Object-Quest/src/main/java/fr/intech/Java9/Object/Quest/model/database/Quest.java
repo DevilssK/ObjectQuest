@@ -11,7 +11,7 @@ public class Quest {
     private Integer questId;
     private String questName;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER )
     private List<Item> items;
 
     public  Quest(){}

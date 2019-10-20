@@ -8,20 +8,31 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.t.objectquest.adapters.QuestAdapter;
+import com.t.objectquest.model.Quest;
+
 import java.io.ByteArrayOutputStream;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
     CapturePhotoUtils photoUtils = new CapturePhotoUtils();
     SendPhoto sendPhoto = new SendPhoto();
+    AppRequest appRequest = new AppRequest();
+    List<Quest> quests;
 
+    ListView questListView;
+    Button listB;
     EditText username;
     EditText password;
    /* Button create = findViewById(R.id.createButton);
@@ -48,7 +59,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
+        ListView questView = findViewById(R.id.quest_list);
+        BaseAdapter questAdapter = new QuestAdapter(quests,this);
+        questView.setAdapter(questAdapter);
+
+        listB = findViewById(R.id.buttonQuest);
+        listB.setOnClickListener((v)->{
+            Intent intent = new Intent(this, quest_activity);
+
+        });
+       questView.setOnItemClickListener((parent, view, position, id) -> {
+               Toast.makeText(MainActivity.this, "Click "+position, Toast.LENGTH_SHORT).show();
+       });
     }
+
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -66,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
         }).start();
     }
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

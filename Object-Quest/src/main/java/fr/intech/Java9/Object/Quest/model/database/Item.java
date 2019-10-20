@@ -13,7 +13,7 @@ public class Item {
     private int point;
 
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER )
     private List<String> labels;
 
     public Item(){}
