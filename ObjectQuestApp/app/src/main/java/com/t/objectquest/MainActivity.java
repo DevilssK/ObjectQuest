@@ -55,37 +55,28 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button button = (Button) findViewById(R.id.button_image);
+        Button button = (Button) findViewById(R.id.button_Photo);
         button.setOnClickListener((c) -> {onClick();} );
 
 
-       /* create.setOnClickListener((v)->{
-            username = findViewById(R.id.usernmaneField);
-            String i =username.getText().toString();
-            if(i.isEmpty() || i!=null ||i.matches("/s")){
 
-                //TODO: write value in db and send request for creation
 
-            }
-            else{
-                Toast.makeText(getApplicationContext(), getString(R.string.retry), Toast.LENGTH_LONG).show();
-            }
-        });*/
 
-        ListView questView = findViewById(R.id.quest_list);
-        BaseAdapter questAdapter = new QuestAdapter(quests,this);
+
+        //ListView questView = findViewById(R.id.quest_list);
+      //  BaseAdapter questAdapter = new QuestAdapter(quests,this);
 //        questView.setAdapter(questAdapter);
 
         listB = findViewById(R.id.button_Photo);
         listB.setOnClickListener((v)->{
 
-            //Intent intent = new Intent(this, quest_activity);
-
+            onClick();
+          //  Intent intent = new Intent(this, quest_activity);
 
         });
-       questView.setOnItemClickListener((parent, view, position, id) -> {
-               Toast.makeText(MainActivity.this, "Click "+position, Toast.LENGTH_SHORT).show();
-       });
+       //questView.setOnItemClickListener((parent, view, position, id) -> {
+         //      Toast.makeText(MainActivity.this, "Click "+position, Toast.LENGTH_SHORT).show();
+       //});
 
     }
 
