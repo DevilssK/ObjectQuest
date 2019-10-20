@@ -31,7 +31,7 @@ public class AppRequestImp implements AppRequest {
 
     OkHttpClient client = new OkHttpClient();
 
-    /*
+
     public List<Quest> getQuests(){
 
          List<Quest>quests = null;
@@ -59,7 +59,7 @@ public class AppRequestImp implements AppRequest {
         return quests;
 
     }
-    */
+
 
     public void GetUser(int Id) {
 
@@ -84,10 +84,11 @@ public class AppRequestImp implements AppRequest {
     }
 
 
-    public void CreateUser(User user , Callback callback){
+    public String CreateUser(User user){
 
         String jsonStr;
         RequestBody req ;
+        String res ="";
         try {
              jsonStr = mapper.writeValueAsString(user);
             // Displaying JSON String
@@ -100,13 +101,26 @@ public class AppRequestImp implements AppRequest {
                     .build();
 
             client.newCall(request)
-                    .enqueue(callback);
-            }
+                    .enqueue( new Callback() {
+                        @Override
+                        public void onFailure(final Call call, IOException e) {
+                            Log.e(TAG,"Erreur d'envoi",e);
+                        }
+
+                        @Override
+                        public void onResponse(Call call, final Response response) throws IOException {
+                            String res = response.body().string();
+                            Log.i(TAG, "response"+ res);
+
+                        }
+            });
+
+        }
 
         catch (IOException e) {
             e.printStackTrace();
         }
-
+        return  res;
     }
 
 

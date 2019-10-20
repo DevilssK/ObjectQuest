@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Button button = (Button) findViewById(R.id.button_image);
         button.setOnClickListener((c) -> {onClick();} );
 
+
        /* create.setOnClickListener((v)->{
             username = findViewById(R.id.usernmaneField);
             String i =username.getText().toString();
@@ -56,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
 
         ListView questView = findViewById(R.id.quest_list);
         BaseAdapter questAdapter = new QuestAdapter(quests,this);
-        questView.setAdapter(questAdapter);
+//        questView.setAdapter(questAdapter);
 
-        listB = findViewById(R.id.buttonQuest);
+        listB = findViewById(R.id.button_Photo);
         listB.setOnClickListener((v)->{
          //   Intent intent = new Intent(this, quest_activity);
 
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
        questView.setOnItemClickListener((parent, view, position, id) -> {
                Toast.makeText(MainActivity.this, "Click "+position, Toast.LENGTH_SHORT).show();
        });
+
     }
 
 
