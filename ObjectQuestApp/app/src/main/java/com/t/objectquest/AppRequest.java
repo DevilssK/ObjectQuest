@@ -1,11 +1,13 @@
 package com.t.objectquest;
 
+import android.os.Parcel;
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.t.objectquest.database.AppDatabase;
 
+import com.t.objectquest.model.Item;
 import com.t.objectquest.model.Quest;
 import com.t.objectquest.model.User;
 
@@ -90,7 +92,7 @@ public class AppRequest {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    public String CreateUser(User user){
+    public String CreateUser(User user, Callback myCallBack){
 
         String jsonStr;
         RequestBody req ;
@@ -106,23 +108,7 @@ public class AppRequest {
                     .build();
 
             client.newCall(request)
-                    .enqueue( new Callback() {
-                        @Override
-                        public void onFailure(final Call call, IOException e) {
-                            Log.e(TAG,"Erreur d'envoi",e);
-                        }
-
-                        @Override
-                        public void onResponse(Call call, final Response response) throws IOException {
-                            String res = response.body().string();
-
-                            User user = mapper.readValue(res, User.class);
-                            Log.i(TAG, "response"+ res);
-
-                            int userId = user.getUserId();
-                           appdatabase.userDao().saveUser(user);
-                        }
-            });
+                    .enqueue(myCallBack);
 
         }
 
@@ -157,8 +143,6 @@ public class AppRequest {
                 .url(Url+"/image/uploadFile")
                 .post(req)
                 .build();
-
-
         OkHttpClient client = new OkHttpClient();
 
         client.newCall(request)
@@ -179,4 +163,34 @@ public class AppRequest {
 
     }
 
+    public List<Item> GetItems() {
+
+        List<Item> items = null;
+
+        Request request = new Request.Builder()
+                .url(Url+"/quest/getQuests")
+                .build();
+
+        Call call = client.newCall(request);
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                System.out.println("failled");
+              //  items = null;
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+
+
+                System.out.println(response.body());
+             //   items = mapper.readValue(response.body().string(), Item.class);
+
+                //Log.i("object list",items.)
+            }
+        });
+
+        return items;
+
+    }
 }

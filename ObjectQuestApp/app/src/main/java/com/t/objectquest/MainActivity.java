@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.t.objectquest.adapters.QuestAdapter;
+import com.t.objectquest.model.Item;
 import com.t.objectquest.model.Quest;
 import com.t.objectquest.model.User;
 
@@ -24,10 +25,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    CapturePhotoUtils photoUtils = new CapturePhotoUtils();
-    SendPhoto sendPhoto = new SendPhoto();
+
     AppRequest appRequest = new AppRequest();
-    List<Quest> quests;
+    List<Item> items = appRequest.GetItems();
     User user;
     Button listB;
 
