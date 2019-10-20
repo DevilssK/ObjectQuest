@@ -30,6 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/User_score"
+            android:textSize="18sp"
             tools:text="score"></TextView>
 
         <ListView

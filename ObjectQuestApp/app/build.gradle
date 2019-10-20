@@ -5,7 +5,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.t.phototest"
+        applicationId "com.t.objectquest"
         minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
@@ -39,6 +39,11 @@ dependencies {
 
     implementation 'com.facebook.stetho:stetho:1.5.1'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.1'
+
+
+// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+
 
     implementation "androidx.room:room-runtime:$room_version"
     testImplementation "androidx.room:room-testing:$room_version"

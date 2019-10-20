@@ -9,7 +9,6 @@ import android.provider.MediaStore;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -61,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
 
         listB = findViewById(R.id.buttonQuest);
         listB.setOnClickListener((v)->{
+<<<<<<< HEAD
             //Intent intent = new Intent(this, quest_activity);
+=======
+         //   Intent intent = new Intent(this, quest_activity);
+>>>>>>> dev
 
         });
        questView.setOnItemClickListener((parent, view, position, id) -> {
@@ -95,7 +98,11 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
+<<<<<<< HEAD
             //ImageView imageView = findViewById(R.id.imageView2);
+=======
+            // ImageView imageView = findViewById(R.id.imageView2);
+>>>>>>> dev
             CapturePhotoUtils.insertImage(this.getContentResolver(),imageBitmap,"title", "uberIMG" );
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -104,7 +111,11 @@ public class MainActivity extends AppCompatActivity {
 
 
             sendPhoto.uploadImage(byteArray);
+<<<<<<< HEAD
             //imageView.setImageBitmap(imageBitmap);
+=======
+            // imageView.setImageBitmap(imageBitmap);
+>>>>>>> dev
         }
     }
 
