@@ -16,13 +16,13 @@ public class UserController {
 
 
     @PostMapping("/create")
-    public int userCreate(@RequestBody  User user){
+    public User userCreate(@RequestBody  User user){
 
         System.out.println(user.getUserName());
         System.out.println(user.getScore());
-        int userId = userRepository.save(user).getUserId();
+        User res = userRepository.save(user);
 
-        return userId;
+        return res;
     }
 
     @GetMapping(value = "/score/{userId}")

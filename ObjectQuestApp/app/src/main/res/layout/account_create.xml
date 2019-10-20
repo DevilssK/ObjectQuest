@@ -28,8 +28,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/username"
-            android:id="@+id/questName"
+            android:text="@string/userName"
+            android:id="@+id/userName"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
         </TextView>

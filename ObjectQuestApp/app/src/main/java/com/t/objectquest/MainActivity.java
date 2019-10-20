@@ -24,9 +24,9 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-
-
-    AppRequestImp appRequestImp = new AppRequestImp();
+    CapturePhotoUtils photoUtils = new CapturePhotoUtils();
+    SendPhoto sendPhoto = new SendPhoto();
+    AppRequest appRequest = new AppRequest();
     List<Quest> quests;
     User user;
     Button listB;

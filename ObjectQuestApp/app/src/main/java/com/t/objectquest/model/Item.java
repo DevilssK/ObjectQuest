@@ -1,31 +1,33 @@
 package com.t.objectquest.model;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.util.List;
 
 @Entity
 public class Item {
 
+    @PrimaryKey
     private Integer itemId;
     private String itemName;
     private int point;
 
 
-    private List<String> labels;
+    //private List<String> labels;
 
     public Item(){}
 
     public Item(String itemName, int point, List<String> labels) {
         this.itemName = itemName;
         this.point = point;
-        this.labels = labels;
+        ///this.labels = labels;
     }
 
     @Override
     public String toString(){
         return String.format("Object[objectId = %d, Name = '%s', score = %d, labels = (%s)",
-                itemId, itemName, point, labels);
+                itemId, itemName, point);
     }
 
     public Integer getItemId() {
@@ -52,11 +54,11 @@ public class Item {
         this.point = point;
     }
 
-    public List<String> getLabels() {
+   /* public List<String> getLabels() {
         return labels;
     }
 
     public void setLabels(List<String> labels) {
         this.labels = labels;
-    }
+    }*/
 }

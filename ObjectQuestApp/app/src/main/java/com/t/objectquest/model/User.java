@@ -1,9 +1,23 @@
 package com.t.objectquest.model;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class User {
+
+    @PrimaryKey
     int userId;
-    String username;
+    String userName;
     int score;
+
+    public User() {
+    }
+    public User(int userId, String userName, int score) {
+        this.userId = userId;
+        this.userName = userName;
+        this.score = score;
+    }
 
     public int getUserId() {
         return userId;
@@ -13,12 +27,12 @@ public class User {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getScore() {
@@ -29,9 +43,5 @@ public class User {
         this.score = score;
     }
 
-    public User(int userId, String username, int score) {
-        this.userId = userId;
-        this.username = username;
-        this.score = score;
-    }
+
 }
