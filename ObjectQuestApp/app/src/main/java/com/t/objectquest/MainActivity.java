@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     AppRequest appRequest = new AppRequest();
-    List<Item> items = appRequest.GetItems();
+
     User user;
     Button listB;
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        appRequest.getQuests();
+        List<Item> items = appRequest.GetItems();
 
         /*
         Intent intent = getIntent();

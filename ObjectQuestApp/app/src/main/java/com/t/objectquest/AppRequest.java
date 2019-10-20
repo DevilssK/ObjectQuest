@@ -31,8 +31,8 @@ public class AppRequest {
 
     private AppDatabase appdatabase = AppDatabase.getIstance(MyApplication.getAppContext());
     private static final String TAG = "httpClient";
-    private static final String Url = "http://192.168.0.29:8080";
-    private ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private static final String Url = "http://192.168.43.40:8080";
+    public ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     OkHttpClient client = new OkHttpClient();
 
@@ -92,15 +92,15 @@ public class AppRequest {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    public String CreateUser(User user, Callback myCallBack){
+    public String CreateUser(User user){
 
         String jsonStr;
         RequestBody req ;
         String res ="";
         try {
-             jsonStr = mapper.writeValueAsString(user);
+            jsonStr = mapper.writeValueAsString(user);
             // Displaying JSON String
-             req = RequestBody.create(JSON, jsonStr);
+            req = RequestBody.create(JSON, jsonStr);
 
             Request request = new Request.Builder()
                     .url(Url+"/user/create")
@@ -108,7 +108,23 @@ public class AppRequest {
                     .build();
 
             client.newCall(request)
-                    .enqueue(myCallBack);
+                    .enqueue( new Callback() {
+                        @Override
+                        public void onFailure(final Call call, IOException e) {
+                            Log.e(TAG,"Erreur d'envoi",e);
+                        }
+
+                        @Override
+                        public void onResponse(Call call, final Response response) throws IOException {
+                            String res = response.body().string();
+
+                            User user = mapper.readValue(res, User.class);
+                            Log.i(TAG, "response"+ res);
+
+                            int userId = user.getUserId();
+                            //appdatabase.userDao().saveUser(user);
+                        }
+                    });
 
         }
 
