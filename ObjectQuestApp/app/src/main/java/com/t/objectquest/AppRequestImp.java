@@ -84,6 +84,9 @@ public class AppRequestImp implements AppRequest {
     }
 
 
+    public static final MediaType JSON
+            = MediaType.parse("application/json; charset=utf-8");
+
     public String CreateUser(User user){
 
         String jsonStr;
@@ -92,11 +95,10 @@ public class AppRequestImp implements AppRequest {
         try {
              jsonStr = mapper.writeValueAsString(user);
             // Displaying JSON String
-             req = new MultipartBody.Builder().setType(MultipartBody.FORM)
-                    .addFormDataPart("User" , jsonStr)
-                    .build();
+             req = RequestBody.create(JSON, jsonStr);
+
             Request request = new Request.Builder()
-                    .url(Url+"/User/create")
+                    .url(Url+"/user/create")
                     .post(req)
                     .build();
 
