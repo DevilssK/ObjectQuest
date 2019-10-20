@@ -1,7 +1,10 @@
 package com.t.objectquest.model;
 
+import androidx.room.Entity;
+
 import java.util.List;
 
+@Entity
 public class Quest {
 
     private Integer questId;

@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
+@RequestMapping({"/quest"})
 public class QuestController {
 
         @Autowired
         QuestRepository questRepository;
 
-        @GetMapping(value = "/getQuest")
+        @GetMapping(value = "/getQuests")
         public Iterable<Quest> getQuests(){
 
                 return questRepository.findAll();
