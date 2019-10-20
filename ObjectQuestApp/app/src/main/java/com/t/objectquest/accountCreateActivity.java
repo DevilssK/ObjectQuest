@@ -15,7 +15,7 @@ import com.t.objectquest.model.User;
 public class accountCreateActivity  extends AppCompatActivity {
 
     public static final String MESSAGE = "com.t.objectquest.accountCreateActivity.MESSAGE";
-    AppRequestImp appRequestImp = new AppRequestImp();
+    AppRequest appRequestImp = new AppRequest();
 
     AppRequest appRequest = new AppRequest();
 

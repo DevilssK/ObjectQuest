@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        appRequestImp.getQuests();
+        appRequest.getQuests();
 
         /*
         Intent intent = getIntent();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Button button = (Button) findViewById(R.id.button_Photo);
+        Button button = findViewById(R.id.button_Photo);
         button.setOnClickListener((c) -> {onClick();} );
 
 
