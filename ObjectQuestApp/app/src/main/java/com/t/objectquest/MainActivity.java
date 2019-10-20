@@ -2,19 +2,15 @@ package com.t.objectquest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.t.objectquest.adapters.QuestAdapter;
@@ -28,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     CapturePhotoUtils photoUtils = new CapturePhotoUtils();
     SendPhoto sendPhoto = new SendPhoto();
-    AppRequest appRequest = new AppRequest();
+    AppRequestImp appRequestImp = new AppRequestImp();
     List<Quest> quests;
 
     ListView questListView;
@@ -65,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         listB = findViewById(R.id.buttonQuest);
         listB.setOnClickListener((v)->{
-            Intent intent = new Intent(this, quest_activity);
+            //Intent intent = new Intent(this, quest_activity);
 
         });
        questView.setOnItemClickListener((parent, view, position, id) -> {
@@ -87,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 dispatchTakePictureIntent();
 
             }
-
         }).start();
     }
 
@@ -100,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
-            ImageView imageView = findViewById(R.id.imageView2);
+            //ImageView imageView = findViewById(R.id.imageView2);
             CapturePhotoUtils.insertImage(this.getContentResolver(),imageBitmap,"title", "uberIMG" );
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
@@ -109,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             sendPhoto.uploadImage(byteArray);
-            imageView.setImageBitmap(imageBitmap);
+            //imageView.setImageBitmap(imageBitmap);
         }
     }
 
