@@ -2,6 +2,7 @@ package com.t.objectquest;
 
 import android.util.Log;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.t.objectquest.model.Quest;
 import com.t.objectquest.model.User;
@@ -27,14 +28,14 @@ public class AppRequestImp implements AppRequest {
 
     private static final String TAG = "httpClient";
     private static final String Url = "http://192.168.43.40:8080";
-    private ObjectMapper mapper = new ObjectMapper();
+    private ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     OkHttpClient client = new OkHttpClient();
 
 
     public List<Quest> getQuests(){
 
-         List<Quest>quests = null;
+        List<Quest>quests = null;
 
         Request request = new Request.Builder()
                 .url(Url+"/quest/getQuests")
@@ -44,15 +45,16 @@ public class AppRequestImp implements AppRequest {
         call.enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                System.out.println("failled");
+                Log.e("get Quest" , String.valueOf(e));
+
             }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
 
-
-                System.out.println(response.body());
-
+              //  quests = mapper.readValue(response.body().string(),Quest.class);
+                Log.i("get Quest" , response.body().string());
+            //    return quests;
             }
         });
 
@@ -84,8 +86,7 @@ public class AppRequestImp implements AppRequest {
     }
 
 
-    public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     public String CreateUser(User user){
 
@@ -94,7 +95,6 @@ public class AppRequestImp implements AppRequest {
         String res ="";
         try {
              jsonStr = mapper.writeValueAsString(user);
-            // Displaying JSON String
              req = RequestBody.create(JSON, jsonStr);
 
             Request request = new Request.Builder()
@@ -112,7 +112,7 @@ public class AppRequestImp implements AppRequest {
                         @Override
                         public void onResponse(Call call, final Response response) throws IOException {
                             String res = response.body().string();
-                            Log.i(TAG, "response"+ res);
+                            Log.i(TAG, "userid :"+ res);
 
                         }
             });
@@ -138,10 +138,10 @@ public class AppRequestImp implements AppRequest {
 
     private static final String TAG1 = "SendPhoto";
 
-    public static void uploadImage(byte[] file) {
+    public static void uploadImage(byte[] file ,int userId) {
 
 
-        FormBody.Builder form = new FormBody.Builder().add("userId" , "1").add("image" , file.toString());
+        FormBody.Builder form = new FormBody.Builder().add("userId" , String.valueOf(userId)).add("image" , file.toString());
 
 
         RequestBody req = new MultipartBody.Builder().setType(MultipartBody.FORM)
@@ -153,6 +153,7 @@ public class AppRequestImp implements AppRequest {
                 .url(Url+"/image/uploadFile")
                 .post(req)
                 .build();
+
 
         OkHttpClient client = new OkHttpClient();
 

@@ -6,14 +6,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.t.objectquest.adapters.QuestAdapter;
 import com.t.objectquest.model.Quest;
+import com.t.objectquest.model.User;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;
@@ -21,15 +24,14 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     static final int REQUEST_IMAGE_CAPTURE = 1;
-    CapturePhotoUtils photoUtils = new CapturePhotoUtils();
-    SendPhoto sendPhoto = new SendPhoto();
+
+
     AppRequestImp appRequestImp = new AppRequestImp();
     List<Quest> quests;
-
-    ListView questListView;
+    User user;
     Button listB;
-    EditText username;
-    EditText password;
+
+
    /* Button create = findViewById(R.id.createButton);
     TextView error = findViewById(R.id.error_message);*/
 
@@ -37,6 +39,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        appRequestImp.getQuests();
+
+        /*
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(accountCreateActivity.MESSAGE);
+        TextView textView = findViewById(R.id.userName);
+        Log.i("MaintActivity" , message);
+        Log.i("MaintActivity" , "hello");
+
+        textView.setText("id"+message);*/
+
+        //TODO: Set User Object
+        user = new User(0,"0" , 0);
+
+
 
         Button button = (Button) findViewById(R.id.button_image);
         button.setOnClickListener((c) -> {onClick();} );
@@ -108,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             byte[] byteArray = stream.toByteArray();
 
 
-            sendPhoto.uploadImage(byteArray);
+            appRequestImp.uploadImage(byteArray , this.user.getUserId());
      }
 
 

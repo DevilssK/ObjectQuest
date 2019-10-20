@@ -18,7 +18,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/quest_name"
+            android:id="@+id/questName"
             android:text="@string/quest"
             android:textSize="30dp"
             ></TextView>

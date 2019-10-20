@@ -42,7 +42,7 @@ public class QuestAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.quest, parent, false);
         }
 
-        TextView questName = view.findViewById(R.id.quest_name);
+        TextView questName = view.findViewById(R.id.questName);
         questName.setText(quest.getQuestName());
         return view;
     }

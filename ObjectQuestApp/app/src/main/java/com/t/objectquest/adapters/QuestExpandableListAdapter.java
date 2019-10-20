@@ -46,7 +46,7 @@ public class QuestExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = layoutInflater.inflate(R.layout.quest_list, null);
         }
         TextView expandedListTextView = (TextView) convertView
-                .findViewById(R.id.quest_name);
+                .findViewById(R.id.questName);
         expandedListTextView.setText(expandedListText);
         return convertView;
     }

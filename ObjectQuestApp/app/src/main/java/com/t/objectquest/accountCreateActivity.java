@@ -1,21 +1,26 @@
 package com.t.objectquest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+
+
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.t.objectquest.model.Quest;
+
 import com.t.objectquest.model.User;
 
-import java.util.List;
+
+
+
 
 public class accountCreateActivity  extends AppCompatActivity {
 
+    public static final String MESSAGE = "com.t.objectquest.accountCreateActivity.MESSAGE";
     AppRequestImp appRequestImp = new AppRequestImp();
 
     Button listB;
@@ -36,6 +41,10 @@ public class accountCreateActivity  extends AppCompatActivity {
 
                String res =  appRequestImp.CreateUser(new User(0,i,0));
                 Log.i("responseUserCreate", "response"+ res);
+
+                Intent intent = new Intent(this , MainActivity.class );
+               // intent.putExtra("com.t.objectquest.accountCreateActivity.MESSAGE", res);
+                startActivity(intent);
 
             }
             else{

@@ -23,10 +23,6 @@ public class SendPhoto {
 
     public static void uploadImage(byte[] file) {
 
-
-        FormBody.Builder form = new FormBody.Builder().add("userId" , "1").add("image" , file.toString());
-
-
         RequestBody req = new MultipartBody.Builder().setType(MultipartBody.FORM)
                 .addFormDataPart("file", "filename.jpg",RequestBody.create(file,MediaType.parse("image/*jpg")))
                 .addFormDataPart("userId" , "1")
