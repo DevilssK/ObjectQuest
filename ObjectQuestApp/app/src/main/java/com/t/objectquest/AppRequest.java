@@ -91,7 +91,7 @@ public class AppRequest {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    public String CreateUser(User user){
+    public User CreateUser(User user){
 
         String jsonStr;
         RequestBody req ;
@@ -120,17 +120,18 @@ public class AppRequest {
                             User user = mapper.readValue(res, User.class);
                             Log.i(TAG, "response"+ res);
 
+                            user = mapper.readValue(res,User.class);
                             int userId = user.getUserId();
                             //appdatabase.userDao().saveUser(user);
                         }
                     });
-
+            return user;
         }
 
         catch (IOException e) {
             e.printStackTrace();
         }
-        return  res;
+        return  user;
     }
 
 

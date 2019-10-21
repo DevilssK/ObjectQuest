@@ -47,12 +47,15 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(userList.size());
 
 
-      /*  Button button = (Button) findViewById(R.id.button_Photo);
-        button.setOnClickListener((c) -> {onClick();} );*/
+      //  TextView Username = findViewById(R.id.userName);
+    //    Username.setText(user.getUserName());
+
+  //      TextView Score = findViewById(R.id.User_score);
+//        Score.setText(user.getScore());
 
 
-        this.buttonPhoto = findViewById(R.id.button_Photo);
-        this.buttonPhoto.setOnClickListener((v)->{
+        Button button = findViewById(R.id.button_Photo);
+        button.setOnClickListener((c) -> { onClick(); } );
 
             onClick();
           //  Intent intent = new Intent(this, quest_activity);

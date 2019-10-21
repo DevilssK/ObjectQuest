@@ -38,7 +38,7 @@ public class accountCreateActivity  extends AppCompatActivity {
 
                String userId =  appRequest.CreateUser(new User(0,i,0));
 
-                Log.i("responseUserCreate", "response"+ userId);
+                Log.i("responseUserCreate", "response"+ res);
 
                 Intent intent = new Intent(this , MainActivity.class );
                 intent.putExtra("userId", userId);
