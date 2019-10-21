@@ -22,6 +22,8 @@ import okhttp3.Response;
 public class accountCreateActivity  extends AppCompatActivity {
 
     public static final String MESSAGE = "com.t.objectquest.accountCreateActivity.MESSAGE";
+
+
     AppRequest appRequest = new AppRequest();
 
     AppDatabase appDatabase =  AppDatabase.getInstance(this);
@@ -47,15 +49,14 @@ public class accountCreateActivity  extends AppCompatActivity {
 
             if(i.isEmpty() || i!=null ||i.matches("/s")){
 
-               String res =  appRequest.CreateUser(new User(0,i,0));
+               String userId =  appRequest.CreateUser(new User(0,i,0));
 
-
-                Log.i("responseUserCreate", "response"+ res);
+                Log.i("responseUserCreate", "response"+ userId);
 
                 List<User> users = appDatabase.userDao().findByUserName(i);
                 users.size();
                 Intent intent = new Intent(this , MainActivity.class );
-
+                intent.putExtra("userId", userId);
                 startActivity(intent);
 
             }

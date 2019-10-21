@@ -170,8 +170,6 @@ public class AppRequest {
 
                     }
                 });
-
-
     }
 
     public List<Item> GetItems() {
