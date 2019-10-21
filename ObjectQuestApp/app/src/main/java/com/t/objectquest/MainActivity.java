@@ -10,9 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.t.objectquest.database.AppDatabase;
-import com.t.objectquest.adapters.QuestAdapter;
-import com.t.objectquest.model.Item;
-import com.t.objectquest.model.Quest;
+
 import com.t.objectquest.model.User;
 
 import java.io.ByteArrayOutputStream;
@@ -26,44 +24,48 @@ public class MainActivity extends AppCompatActivity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     AppRequest appRequest = new AppRequest();
-
     User user;
     Button buttonPhoto;
     TextView userName;
     TextView score;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        List<Item> items = appRequest.GetItems();
+        //List<Item> items = appRequest.GetItems();
 
-        List<User> userList = appDatabase.userDao().getUserList();
+
+
         Intent intent = getIntent();
-        String userId = intent.getStringExtra("userId");
+        String message = intent.getStringExtra("userName");
 
-        System.out.println(userList.size());
+        System.out.println(message);
+
+        AppDatabase appDatabase = AppDatabase.getInstance(this);
+        List<User> users = appDatabase.userDao().findUserByName(message);
+
+        int i = 0;
+        while(users.size() != 0 || i<100){
+            i++;
+            users = appDatabase.userDao().findUserByName(message);
+
+        }
+        User user1 = appDatabase.userDao().findByUserId(users.get(0).getUserId());
+
+        userName = findViewById(R.id.userName);
+        userName.setText(user1.getUserName());
+
+        score = findViewById(R.id.score);
+        score.setText(Integer.toString(user1.getScore()));
 
 
-      //  TextView Username = findViewById(R.id.userName);
-    //    Username.setText(user.getUserName());
-
-  //      TextView Score = findViewById(R.id.User_score);
-//        Score.setText(user.getScore());
+        this.buttonPhoto = findViewById(R.id.button_Photo);
+        this.buttonPhoto.setOnClickListener((v)-> {
 
 
-        Button button = findViewById(R.id.button_Photo);
-        button.setOnClickListener((c) -> { onClick(); } );
+            });
 
-            onClick();
-          //  Intent intent = new Intent(this, quest_activity);
-
-        });
-       //questView.setOnItemClickListener((parent, view, position, id) -> {
-         //      Toast.makeText(MainActivity.this, "Click "+position, Toast.LENGTH_SHORT).show();
-       //});
 
     }
 

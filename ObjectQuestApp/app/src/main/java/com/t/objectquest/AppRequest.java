@@ -1,6 +1,5 @@
 package com.t.objectquest;
 
-import android.os.Parcel;
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -19,7 +18,6 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -29,9 +27,9 @@ import okhttp3.Response;
 
 public class AppRequest {
 
-    private AppDatabase appdatabase = AppDatabase.getIstance(MyApplication.getAppContext());
+    private AppDatabase appdatabase = AppDatabase.getInstance(MyApplication.getAppContext());
     private static final String TAG = "httpClient";
-    private static final String Url = "http://192.168.43.40:8080";
+    private static final String Url = "http://192.168.0.29:8080";
     public ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     OkHttpClient client = new OkHttpClient();
@@ -120,9 +118,9 @@ public class AppRequest {
                             User user = mapper.readValue(res, User.class);
                             Log.i(TAG, "response"+ res);
 
-                            user = mapper.readValue(res,User.class);
-                            int userId = user.getUserId();
-                            //appdatabase.userDao().saveUser(user);
+                            appdatabase.userDao().saveUser(user);
+                            List<User>  users = appdatabase.userDao().findUserByName(user.getUserName());
+                            System.out.println(users.get(0).getUserName());
                         }
                     });
             return user;

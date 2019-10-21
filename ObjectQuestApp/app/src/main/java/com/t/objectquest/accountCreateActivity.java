@@ -15,9 +15,9 @@ import com.t.objectquest.model.User;
 public class accountCreateActivity  extends AppCompatActivity {
 
     public static final String MESSAGE = "com.t.objectquest.accountCreateActivity.MESSAGE";
-
-
     AppRequest appRequest = new AppRequest();
+
+
 
 
     EditText username;
@@ -40,8 +40,9 @@ public class accountCreateActivity  extends AppCompatActivity {
 
                 Log.i("responseUserCreate", "response"+ res);
 
+
                 Intent intent = new Intent(this , MainActivity.class );
-                intent.putExtra("userId", userId);
+                intent.putExtra("userName", i);
                 startActivity(intent);
 
             }

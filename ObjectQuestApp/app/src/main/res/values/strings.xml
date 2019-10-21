@@ -6,5 +6,5 @@
     <string name="retry">Réesayé</string>
     <string name="description">Description</string>
     <string name="quest">Quête</string>
-    <string name="User_score">Score : 0</string>
+    <string name="User_score">Score</string>
 </resources>
