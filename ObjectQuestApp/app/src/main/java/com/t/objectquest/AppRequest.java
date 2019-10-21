@@ -62,7 +62,6 @@ public class AppRequest {
         });
 
         return quests;
-
     }
 
 
@@ -175,8 +174,6 @@ public class AppRequest {
 
                     }
                 });
-
-
     }
 
     public List<Item> GetItems() {

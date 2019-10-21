@@ -6,14 +6,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
-import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.t.objectquest.database.AppDatabase;
 import com.t.objectquest.adapters.QuestAdapter;
 import com.t.objectquest.model.Item;
 import com.t.objectquest.model.Quest;
@@ -24,16 +20,19 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    AppDatabase appDatabase = AppDatabase.getIstance(this);
+
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     AppRequest appRequest = new AppRequest();
 
     User user;
-    Button listB;
+    Button buttonPhoto;
+    TextView userName;
+    TextView score;
 
 
-   /* Button create = findViewById(R.id.createButton);
-    TextView error = findViewById(R.id.error_message);*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,34 +40,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         List<Item> items = appRequest.GetItems();
 
-        /*
+        List<User> userList = appDatabase.userDao().getUserList();
         Intent intent = getIntent();
-        String message = intent.getStringExtra(accountCreateActivity.MESSAGE);
-        TextView textView = findViewById(R.id.userName);
-        Log.i("MaintActivity" , message);
-        Log.i("MaintActivity" , "hello");
+        String userId = intent.getStringExtra("userId");
 
-        textView.setText("id"+message);*/
-
-        //TODO: Set User Object
-        user = new User(0,"0" , 0);
+        System.out.println(userList.size());
 
 
-
-        Button button = findViewById(R.id.button_Photo);
-        button.setOnClickListener((c) -> {onClick();} );
-
+      /*  Button button = (Button) findViewById(R.id.button_Photo);
+        button.setOnClickListener((c) -> {onClick();} );*/
 
 
-
-
-
-        //ListView questView = findViewById(R.id.quest_list);
-      //  BaseAdapter questAdapter = new QuestAdapter(quests,this);
-//        questView.setAdapter(questAdapter);
-
-        listB = findViewById(R.id.button_Photo);
-        listB.setOnClickListener((v)->{
+        this.buttonPhoto = findViewById(R.id.button_Photo);
+        this.buttonPhoto.setOnClickListener((v)->{
 
             onClick();
           //  Intent intent = new Intent(this, quest_activity);
@@ -98,8 +82,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -117,9 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             appRequest.uploadImage(byteArray , this.user.getUserId());
-     }
-
-
+        }
     }
 }
 
