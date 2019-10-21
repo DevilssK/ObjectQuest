@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     Button listB;
 
 
+
    /* Button create = findViewById(R.id.createButton);
     TextView error = findViewById(R.id.error_message);*/
 
@@ -53,30 +54,18 @@ public class MainActivity extends AppCompatActivity {
         //TODO: Set User Object
         user = new User(0,"0" , 0);
 
+      //  TextView Username = findViewById(R.id.userName);
+    //    Username.setText(user.getUserName());
+
+  //      TextView Score = findViewById(R.id.User_score);
+//        Score.setText(user.getScore());
 
 
         Button button = findViewById(R.id.button_Photo);
-        button.setOnClickListener((c) -> {onClick();} );
+        button.setOnClickListener((c) -> { onClick(); } );
 
 
 
-
-
-
-        //ListView questView = findViewById(R.id.quest_list);
-      //  BaseAdapter questAdapter = new QuestAdapter(quests,this);
-//        questView.setAdapter(questAdapter);
-
-        listB = findViewById(R.id.button_Photo);
-        listB.setOnClickListener((v)->{
-
-            onClick();
-          //  Intent intent = new Intent(this, quest_activity);
-
-        });
-       //questView.setOnItemClickListener((parent, view, position, id) -> {
-         //      Toast.makeText(MainActivity.this, "Click "+position, Toast.LENGTH_SHORT).show();
-       //});
 
     }
 

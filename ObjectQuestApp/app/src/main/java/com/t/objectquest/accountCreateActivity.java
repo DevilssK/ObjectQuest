@@ -36,9 +36,10 @@ public class accountCreateActivity  extends AppCompatActivity {
             String i =username.getText().toString();
             if(i.isEmpty() || i!=null ||i.matches("/s")){
 
-                String res =  appRequest.CreateUser(new User(0,i,0));
+                User user = appRequest.CreateUser(new User(0,i,0));
 
-                Log.i("responseUserCreate", "response"+ res);
+                Log.i("responseUserCreate", "response"+ user.getUserName());
+                Log.i("responseUserCreate", "response"+ user.getUserId());
 
                 Intent intent = new Intent(this , MainActivity.class );
                 // intent.putExtra("com.t.objectquest.accountCreateActivity.MESSAGE", res);

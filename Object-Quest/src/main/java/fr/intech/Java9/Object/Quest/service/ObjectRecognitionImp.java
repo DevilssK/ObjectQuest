@@ -18,15 +18,17 @@ public class ObjectRecognitionImp  implements ObjectRecognition{
 
         List<Item> items = (List) itemRepository.findAll();
 
+
         Item obj = new Item();
+        System.out.println(requestResponse.toString());
 
-        for(Item item : items){
+        for(int i = 0; i < items.size(); i++ ){
 
-            if(areSimilare(requestResponse.getDescriptions(), item.getLabels())){
-                return item;
+            if(areSimilare(requestResponse.getDescriptions(), items.get(i).getLabels())){
+                return items.get(i);
             }
             else{
-                return obj;
+
             }
         }
 

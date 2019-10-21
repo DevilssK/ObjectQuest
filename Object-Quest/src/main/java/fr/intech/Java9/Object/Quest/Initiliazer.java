@@ -37,7 +37,7 @@ public class Initiliazer {
         //In'Tech
         List<String> dist = Arrays.asList("Machine","Vending machine");
         List<String> trash = Arrays.asList("Waste container", "Waste containment", "Recycling bin");
-        List<String> babyFoot =Arrays.asList("Indoor games and sports", "Table", "Games", "Sport venue", "Furniture", "Play", "Room", "Recreation", "Leisure", "Recreation room","Table", "Furniture", "Indoor games and sports", "Games", "Room", "Recreation room", "Recreation");
+        List<String> babyFoot = Arrays.asList("Indoor games and sports", "Table", "Games", "Sport venue", "Furniture", "Play", "Room", "Recreation", "Leisure", "Recreation room","Table", "Furniture", "Indoor games and sports", "Games", "Room", "Recreation room", "Recreation");
         List<String> ext = Arrays.asList("Fire extinguisher", "Gas");
         //Animals
         List<String> dog = Arrays.asList("Dog", "Dog breed", "Canidae","Carnivore");
@@ -47,7 +47,7 @@ public class Initiliazer {
         List<String> couch = Arrays.asList("Furniture","Couch");
         List<String>  chair= Arrays.asList("Chair", "Furniture");
         //Kitchen
-        List<String> knife = Arrays.asList("Knife", "Cutlery", "Kitchen knife", "Blade", "Tableware", "Table knife");
+        List<String> knife = Arrays.asList("Knife", "Cold weapon", "Kitchen knife", "Blade", "Cutlery", "Table knife");
         List<String> fork = Arrays.asList("Tool","Kitchen utensil", "Tableware");
         List<String> microwave = Arrays.asList("Electronics","Product", "Microwave oven", "Technology", "Flooring", "Electronic device", "Room", "Material property", "Home appliance", "Electronics, Technology, Electronic device, Room, Home appliance","[Microwave oven, Electronics, Home appliance, Technology, Floor, Room, Electronic device, Kitchen appliance, Flooring, Small appliance");
         List<String> cup = Arrays.asList("Cup", "Drinkware", "Glass");
