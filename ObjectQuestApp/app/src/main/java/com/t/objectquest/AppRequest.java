@@ -120,8 +120,7 @@ public class AppRequest {
                             User user = mapper.readValue(res, User.class);
                             Log.i(TAG, "response"+ res);
 
-                            user = mapper.readValue(res,User.class);
-                            int userId = user.getUserId();
+
                             //appdatabase.userDao().saveUser(user);
                         }
                     });
