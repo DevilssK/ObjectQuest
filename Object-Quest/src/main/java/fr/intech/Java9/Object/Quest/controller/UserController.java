@@ -21,7 +21,7 @@ public class UserController {
         System.out.println(user.getUserName());
         System.out.println(user.getScore());
         User res = userRepository.save(user);
-
+        System.out.println(res.toString());
         return res;
     }
 

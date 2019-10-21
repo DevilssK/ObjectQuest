@@ -1,6 +1,5 @@
 package com.t.objectquest;
 
-import android.os.Parcel;
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -19,7 +18,6 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -29,13 +27,15 @@ import okhttp3.Response;
 
 public class AppRequest {
 
-    private AppDatabase appdatabase = AppDatabase.getIstance(MyApplication.getAppContext());
+    private AppDatabase appdatabase = AppDatabase.getInstance(MyApplication.getAppContext());
     private static final String TAG = "httpClient";
     private static final String Url = "http://192.168.0.29:8080";
     private ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     OkHttpClient client = new OkHttpClient();
 
+
+    public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     public List<Quest> getQuests(){
 
@@ -55,14 +55,12 @@ public class AppRequest {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
 
-
                 System.out.println(response.body());
 
             }
         });
 
         return quests;
-
     }
 
 
@@ -89,18 +87,14 @@ public class AppRequest {
     }
 
 
-    public static final MediaType JSON
-            = MediaType.parse("application/json; charset=utf-8");
 
-    public String CreateUser(User user, Callback myCallBack){
 
-        String jsonStr;
-        RequestBody req ;
-        String res ="";
+    public String CreateUser(User user){
+
         try {
-             jsonStr = mapper.writeValueAsString(user);
+             String jsonStr = mapper.writeValueAsString(user);
             // Displaying JSON String
-             req = RequestBody.create(JSON, jsonStr);
+            RequestBody req = RequestBody.create(JSON, jsonStr);
 
             Request request = new Request.Builder()
                     .url(Url+"/user/create")
@@ -108,14 +102,26 @@ public class AppRequest {
                     .build();
 
             client.newCall(request)
-                    .enqueue(myCallBack);
+                    .enqueue(new Callback() {
+                        @Override
+                        public void onFailure(final Call call, IOException e) {
+                            Log.e("CreateUser","Erreur d'envoi",e);
+                        }
 
+                        @Override
+                        public void onResponse(Call call, final Response response) throws IOException {
+                            String res = response.body().toString();
+                            User user = mapper.readValue(res, User.class);
+                            Log.i("CreateUser", "response"+ res);
+                            appdatabase.userDao().saveUser(user);
+                        }
+                    });
         }
 
         catch (IOException e) {
             e.printStackTrace();
         }
-        return  res;
+        return "OK";
     }
 
 
@@ -193,4 +199,5 @@ public class AppRequest {
         return items;
 
     }
+
 }
