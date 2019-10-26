@@ -13,6 +13,7 @@ public class User {
 
     public User() {
     }
+
     public User(int userId, String userName, int score) {
         this.userId = userId;
         this.userName = userName;

@@ -35,22 +35,31 @@ public class accountCreateActivity  extends AppCompatActivity {
             username = findViewById(R.id.usernmaneField);
             String i =username.getText().toString();
             if(i.isEmpty() || i!=null ||i.matches("/s")){
+                appRequest.setListener(user -> {
+                    userCreated(user);
+                });
+               appRequest.CreateUser(new User(0,i,0));
 
-               String userId =  appRequest.CreateUser(new User(0,i,0));
 
 
 
-                Log.i("responseUserCreate", "response"+ user.getUserName());
-                Log.i("responseUserCreate", "response"+ user.getUserId());
-                Intent intent = new Intent(this , MainActivity.class );
-                intent.putExtra("userId", userId);
-                startActivity(intent);
 
             }
             else{
                 Toast.makeText(getApplicationContext(), getString(R.string.retry), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void userCreated(User user) {
+        runOnUiThread(() -> {
+            Log.i("responseUserCreate", "response"+ user.getUserName());
+            Log.i("responseUserCreate", "response"+ user.getUserId());
+            Intent intent = new Intent(this , MainActivity.class );
+            intent.putExtra("userId", user.getUserId());
+            startActivity(intent);
+        });
+
     }
 
 

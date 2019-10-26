@@ -36,15 +36,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        List<Item> items = appRequest.GetItems();
+//        List<Item> items = appRequest.GetItems();
 
         List<User> userList = appDatabase.userDao().getUserList();
         Intent intent = getIntent();
         String userId = intent.getStringExtra("userId");
 
         System.out.println(userList.size());
+
 
 
       //  TextView Username = findViewById(R.id.userName);
@@ -57,10 +60,10 @@ public class MainActivity extends AppCompatActivity {
         Button button = findViewById(R.id.button_Photo);
         button.setOnClickListener((c) -> { onClick(); } );
 
-            onClick();
+
           //  Intent intent = new Intent(this, quest_activity);
 
-        });
+        //});
        //questView.setOnItemClickListener((parent, view, position, id) -> {
          //      Toast.makeText(MainActivity.this, "Click "+position, Toast.LENGTH_SHORT).show();
        //});

@@ -1,6 +1,5 @@
 package com.t.objectquest;
 
-import android.os.Parcel;
 import android.util.Log;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -36,6 +35,19 @@ public class AppRequest {
 
     OkHttpClient client = new OkHttpClient();
 
+    private AppRequestListener listener;
+
+    public void setListener(AppRequestListener listener) {
+        this.listener = listener;
+    }
+
+    public AppRequestListener getListener() {
+        return listener;
+    }
+
+    public static interface AppRequestListener {
+        public void userCreated(User user);
+    }
 
     public List<Quest> getQuests(){
 
@@ -91,7 +103,7 @@ public class AppRequest {
     public static final MediaType JSON
             = MediaType.parse("application/json; charset=utf-8");
 
-    public User CreateUser(User user){
+    public void CreateUser(User user){
 
         String jsonStr;
         RequestBody req ;
@@ -120,17 +132,19 @@ public class AppRequest {
                             User user = mapper.readValue(res, User.class);
                             Log.i(TAG, "response"+ res);
 
+                            if (listener != null) {
+                                listener.userCreated(user);
+                            }
+
 
                             //appdatabase.userDao().saveUser(user);
                         }
                     });
-            return user;
         }
 
         catch (IOException e) {
             e.printStackTrace();
         }
-        return  user;
     }
 
 
